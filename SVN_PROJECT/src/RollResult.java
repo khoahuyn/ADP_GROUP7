@@ -1,7 +1,7 @@
 import java.util.Vector;
 
 public class RollResult {
-	int total;
+    int total;
     int modifier;
 	private Vector<Integer> rolls;
 //    Vector<Integer> rolls;
@@ -29,15 +29,4 @@ public class RollResult {
     public String toString() {
 	return total +"  <= " +rolls.toString()+  (modifier>0?("+"+modifier):  modifier<0?modifier:"");
     }
-
-        public static void main(String[] args) {
-            RollResult result1 = new RollResult(3);
-            result1.addResult(7);
-            result1.addResult(9);
-            RollResult result2 = new RollResult(5);
-            result2.addResult(3);
-            result2.addResult(5);
-            RollResult finalResult = result1.andThen(result2);
-            System.out.println(finalResult.toString());
-        }
 }

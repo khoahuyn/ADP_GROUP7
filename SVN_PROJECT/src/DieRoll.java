@@ -1,13 +1,9 @@
 import java.util.Random;
 
 public class DieRoll {
-
-
-	// Random rd=new Random();
     private int ndice;
     private int nsides;
 	private int bonus;
-//    private int bonus;
     private static Random rd;
     static{
 	rd=new Random();
@@ -35,11 +31,4 @@ public class DieRoll {
 	}
 	return ans;
     }
-    public static void main(String[] args) {
-        DieRoll dieRoll = new DieRoll();
-        dieRoll.Die_Roll(1, 6, 0);
-        RollResult result = dieRoll.makeRoll();
-        System.out.println(dieRoll.toString() + ": " + result.toString());
-    }
-
 }

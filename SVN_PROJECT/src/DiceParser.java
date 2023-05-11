@@ -2,7 +2,7 @@ import java.util.Vector;
 
 public class DiceParser {
 	 /* this is a helper class to manage the input "stream"*/
-    private static class StringStream{
+   private static class StringStream{
 	StringBuffer buff;
 	public StringStream(String s){
 	    buff=new StringBuffer(s);
@@ -83,28 +83,28 @@ public class DiceParser {
 	    return buff.toString();
 	}
 
-    }
-    /** roll::= ndice ; roll
-              | ndice
-        xdice::= dice
-                | N X dice
-        dice::= die bonus?  dtail
-              XXXX| FA(die,bonus,N) dtail
-         dtail::= & dice 
-                | <nothing>
-         die::= (N)? dN
-         bonus::= + N
-                | -N
-    **/
+   }
+   /** roll::= ndice ; roll
+             | ndice
+       xdice::= dice
+               | N X dice
+       dice::= die bonus?  dtail
+             XXXX| FA(die,bonus,N) dtail
+        dtail::= & dice 
+               | <nothing>
+        die::= (N)? dN
+        bonus::= + N
+               | -N
+   **/
 
-    public static Vector<DieRoll> parseRoll(String s){
+   public static Vector<DieRoll> parseRoll(String s){
 	StringStream ss=new StringStream(s.toLowerCase());
 	Vector<DieRoll> v= parseRollInner(ss,new Vector<DieRoll>());
 	if(ss.isEmpty())
 	    return v;
 	return null;
-    }
-    private static Vector<DieRoll> parseRollInner(StringStream ss,
+   }
+   private static Vector<DieRoll> parseRollInner(StringStream ss,
 						   Vector<DieRoll> v){
 	Vector<DieRoll> r=parseXDice(ss);
 	if(r==null) {
@@ -115,8 +115,8 @@ public class DiceParser {
 	    return parseRollInner(ss,v);
 	}
 	return v;
-    }
-    private static Vector<DieRoll> parseXDice(StringStream ss) {
+   }
+   private static Vector<DieRoll> parseXDice(StringStream ss) {
 	StringStream saved=ss.save();
 	Integer x=ss.getInt();
 	int num;
@@ -141,15 +141,15 @@ public class DiceParser {
 	    ans.add(dr);
 	}
 	return ans;
-    }
-    /**
-     * dice::= die (bonus?) dtail
-     *       XXXX| FA(die,bonus,N) dtail
-     */
-    private static DieRoll parseDice(StringStream ss){
+   }
+   /**
+    * dice::= die (bonus?) dtail
+    *       XXXX| FA(die,bonus,N) dtail
+    */
+   private static DieRoll parseDice(StringStream ss){
 	return parseDTail(parseDiceInner(ss),ss);
-    }
-    private static DieRoll parseDTail(DieRoll parseDiceInner, StringStream ss) {
+   }
+   private static DieRoll parseDTail(DieRoll parseDiceInner, StringStream ss) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -186,8 +186,8 @@ public class DiceParser {
 	    bonus=num;
 	return new DieRoll();	
 	
-    }
-    private static DiceSum parseDTail(DiceSum diceSum,
+   }
+   private static DiceSum parseDTail(DiceSum diceSum,
 				StringStream ss) {
 	if(diceSum==null)
 	    return null;
@@ -198,8 +198,8 @@ public class DiceParser {
 	else {
 	    return diceSum;
 	}
-    }
-    private static void test(String s) {
+   }
+   private static void test(String s) {
 	Vector<DieRoll> v=parseRoll(s);
 	int i;
 	if(v==null)
@@ -213,8 +213,8 @@ public class DiceParser {
 		System.out.println(dr.makeRoll());
 	    }
 	}
-    }
-    public static void main(String[] args) {
+   }
+   public static void main(String[] args) {
 	test("d6");
 	test("2d6");
 	test("d6+5");
@@ -222,8 +222,9 @@ public class DiceParser {
 	test("12d10+5 & 4d6+2");
 	test("d6 ; 2d4+3");
 	test("4d6+3 ; 8d12 -15 ; 9d10 & 3d6 & 4d12 +17");
-        test("4d6 + xyzzy");
+       test("4d6 + xyzzy");
 	test("hi");
 	test("4d4d4");
-    }
+   }
 }
+
