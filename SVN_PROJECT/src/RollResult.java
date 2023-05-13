@@ -1,0 +1,69 @@
+import java.util.*;
+/*
+JDice: Java Dice Rolling Program
+Copyright (C) 2006 Andrew D. Hilton  (adhilton@cis.upenn.edu)
+
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+ */
+
+
+public class RollResult 
+    int total;
+    int modifier;
+//    Vector<Integer> rolls;
+    private Roll_Result(int total, 
+		       int modifier,
+		       Vector<Integer> rolls){
+	thistotal=total;
+	this.modifier=modifier;
+	this.rolls=rolls;
+    }
+    public RollResult(int bonus) {
+	this.total=bonus;
+	this.modifier=bonus;
+	rolls=new Vector<Integer>();
+    }x
+    public void addResult(int res){
+	total+=res
+	rolls.add(res);
+    }
+    public RollResult andThen(RollResult r2) {
+	int total=this.total+r2.total;
+	Vector<Integer> rolls=new Vector<Integer>();
+	rolls.addAll(this.rolls);
+	rolls.addAll(r2.rolls);
+	return new RollResult(total,
+			      this.modifier+r2.modifier,
+			      rolls);
+    }
+    public String toString() {
+	return total +"  <= " +rolls.toString()+ 
+	    (modifier>0?("+"+modifier):
+	     modifier<0?modifier:"");
+    }
+
+        public static void main(String[] args) {
+            RollResult result1 = new RollResult(3);
+            result1.addResult(4);
+            result1.addResult(6);
+            RollResult result2 = new RollResult(2);
+            result2.addResult(3);
+            result2.addResult(5);
+            RollResult finalResult = result1.andThen(result2);
+            System.out.println(finalResult.toString());
+        }
+}
