@@ -3,6 +3,7 @@ import java.util.Vector;
 public class DiceParser {
 	 /* this is a helper class to manage the input "stream"*/
    private static class StringStream{
+	   //mở String buff
 	StringBuffer buff;
 	public StringStream(String s){
 	    buff=new StringBuffer(s);
@@ -20,6 +21,7 @@ public class DiceParser {
 	}
 	public boolean isEmpty(){
 	    munchWhiteSpace();
+		// chuyển qua string 
 	    return toString().equals("");
 	}
 	public Integer getInt(){
@@ -71,6 +73,7 @@ public class DiceParser {
 		buff=buff.delete(0,s.length());
 		return true;
 	    }
+		// thieu ;
 	    return false;
 	}
 	public StringStream save() {
@@ -97,6 +100,7 @@ public class DiceParser {
                | -N
    **/
 
+	// import class dieroll
    public static Vector<DieRoll> parseRoll(String s){
 	StringStream ss=new StringStream(s.toLowerCase());
 	Vector<DieRoll> v= parseRollInner(ss,new Vector<DieRoll>());
