@@ -1,4 +1,6 @@
-import java.awt.*;
+package project_3;
+
+import java.awt.*;    // khai báo dòng lệnh: "requires java.desktop;" tại module-info.java để hết lỗi các dòng import
 import java.awt.event.*;
 import javax.swing.*;
 import java.util.*;
@@ -24,7 +26,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
  */
 public class JDice {
-    static final String CLEAR=Clear;
+    private static String Clear; // khai báo biến Clear
+	static final String CLEAR=Clear;
     static final String ROLL="Roll Selection";
     static void showError(String s) {
     }
@@ -34,9 +37,8 @@ public class JDice {
 	JComboBox inputBox;
 	long lastEvent; /* hack to prevent double events with text
 			   entry */
-	public JDice-Listener(JList resultList,
-			     JComboBox inputBox){
-
+	public JDiceListener(JList resultList, JComboBox inputBox)// xóa dấu '-' 
+	{
 	    this.listItems=new Vector<String>();
 	    this.resultList=resultList;
 	    this.inputBox=inputBox;
@@ -47,11 +49,11 @@ public class JDice {
 	    if(e.getWhen()==lastEvent)
 		return;
 	    lastEvent=e.getWhen();
-	    if(egetSource() instanceof JComboBox ||
+	    if(e.getSource() instanceof JComboBox ||  // thêm dấu . để dùng getSource()
 	       e.getActionCommand().equals(ROLL)) {
 		String s=inputBox.getSelectedItem().toString();
 		String[] arr=s.split("=");
-		String name=""
+		String name=""; // thêm dấu ;
 		for(int i=0;i<arr.length-2;i++) {
 		    name=arr[i]+"=";
 		}
@@ -71,12 +73,11 @@ public class JDice {
 	    listItems.clear();
 	    resultList.setListData(listItems);
 	}
-	private void doRoll(String name,
-			    String diceString) {
+	private void doRoll(String name,String diceString) {
 	    String prepend="";
 	    int start=0;
 	    int i;
-	    Vector<DieRoll> v=DiceParser.parseRoll(diceString);
+	    Vector<DieRoll> v=DiceParser.parseRoll(diceString); // cần thêm class DiceParser và DieRoll
 	    if(v==null) {
 		showError("Invalid dice string" +diceString);
 		return;
@@ -88,8 +89,8 @@ public class JDice {
 	    }
 	    int[] selectionIndices=new int[start+v.size()];
 	    for(i=0;i<v.size();i++) {
-		DieRoll dr=v.get(i);
-		RollResult rr=dr.makeRoll();
+		DieRoll dr=v.get(i);  // thêm class DieRoll
+		RollResult rr=dr.makeRoll(); // thêm class RollResult
 		String toAdd=prepend+dr+"  =>  "+rr;
 		listItems.add(i+start,toAdd);
 	    }
@@ -153,5 +154,5 @@ public class JDice {
 	jf.setVisible(true);
 			  
     }
-
 }
+

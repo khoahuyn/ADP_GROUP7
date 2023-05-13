@@ -1,3 +1,4 @@
+package project_3;
 import java.util.*;
 /*
 JDice: Java Dice Rolling Program
@@ -22,24 +23,24 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 
 public class DieRoll {
-    private ndice;
+    private int ndice; // khai báo int cho biến ndice
     private int nsides;
-//    private int bonus;
-    private static Random rnd;
+	private int bonus;
+    private static Random rd;// import Random
     static{
-	rnd=new Random();
+	rd=new Random();// import Random
     }
-    public Die_Roll(int ndice,
-		   int nsides,
-		   int bonus) {
-	this.ndice=ndice;
+    public void Die_Roll(int ndice,int nsides,int bonus) //gọi hàm void
+    {
+	this.ndice=ndice; //sau khi khai báo biến int thì dòng này sẽ hết lỗi
 	this.nsides=nsides;
-	this.bonus=bonus;
+	this.bonus=bonus; // khai báo biến bonus ở trên
     }
-    public RollResult makeRoll() {
-	RollResult r=new RollResult(bonus);
+    public RollResult makeRoll() // chưa có class RollResult
+    {
+	RollResult r=new RollResult(bonus);// chưa có class RollResult
 	for(int i=0;i<ndice;i++) {
-	    int roll=rndnextInt(nsides)+1;
+	    int roll=rd.nextInt(nsides)+1; //sửa lại rd.nextInt();
 	    r.addResult(roll);
 	}
 	return r;
@@ -50,9 +51,9 @@ public class DieRoll {
 	    ans= ans+"+"+bonus;
 	}
 	else if(bonus<0) {
-	    ans=ans+bonus
+	    ans=ans+bonus;// thiếu ;
 	}
 	return ans;
     }
-
 }
+

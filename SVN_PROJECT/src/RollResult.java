@@ -1,3 +1,5 @@
+package project_3;
+
 import java.util.*;
 /*
 JDice: Java Dice Rolling Program
@@ -21,24 +23,24 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
 
-public class RollResult 
+public class RollResult {
     int total;
     int modifier;
+	private Vector<Integer> rolls;
 //    Vector<Integer> rolls;
-    private Roll_Result(int total, 
-		       int modifier,
-		       Vector<Integer> rolls){
-	thistotal=total;
+    private void Roll_Result(int total, int modifier,Vector<Integer> rolls)  // thêm hàm void
+    {
+	this.total=total; //thêm . để trỏ đến biến total
 	this.modifier=modifier;
-	this.rolls=rolls;
+	this.rolls=rolls; // gọi thêm vector rolls
     }
     public RollResult(int bonus) {
 	this.total=bonus;
 	this.modifier=bonus;
-	rolls=new Vector<Integer>();
-    }x
+	rolls=new Vector<Integer>(); // import vector
+    }
     public void addResult(int res){
-	total+=res
+	total+=res; // thêm ;
 	rolls.add(res);
     }
     public RollResult andThen(RollResult r2) {
@@ -46,24 +48,9 @@ public class RollResult
 	Vector<Integer> rolls=new Vector<Integer>();
 	rolls.addAll(this.rolls);
 	rolls.addAll(r2.rolls);
-	return new RollResult(total,
-			      this.modifier+r2.modifier,
-			      rolls);
+	return new RollResult(total); // trả về RollResult
     }
     public String toString() {
-	return total +"  <= " +rolls.toString()+ 
-	    (modifier>0?("+"+modifier):
-	     modifier<0?modifier:"");
+	return total +"  <= " +rolls.toString()+  (modifier>0?("+"+modifier):  modifier<0?modifier:"");
     }
-
-        public static void main(String[] args) {
-            RollResult result1 = new RollResult(3);
-            result1.addResult(4);
-            result1.addResult(6);
-            RollResult result2 = new RollResult(2);
-            result2.addResult(3);
-            result2.addResult(5);
-            RollResult finalResult = result1.andThen(result2);
-            System.out.println(finalResult.toString());
-        }
 }
