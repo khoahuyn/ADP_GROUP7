@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cong cu tinh toan</title>
+    <link rel="stylesheet" href="bangtinh_sheet.css">
+</head>
+<body>
+<div class="allbox">
+    <div class="box">
+        <p class="heading">Simple Calculate</p>
+        <div class="inputbox">
+            <form>
+                <div class="input1">
+                    <label for="num1">Number1:</label>
+                    <input type="text" id="num1" >
+                    <p id="thongtin"></p>
+                </div>
+                <div class="input2">
+                    <label for="num2">Number2:</label>
+                    <input type="text" id="num2" >
+                    <p id="thongtin2"></p>
+                    <p id="ketqua"></p>
+                </div>
+            </form>
+        </div>
+
+        <div class="buttonbox">
+            <button onclick="click_reset()" class="reset_button">Reset</button>
+            <button onclick="click_add()" class="add_button">Add</button>
+            <button onclick="click_subtract()" class="subtract_button">Subtract</button>
+        </div>
+        <div class="buttonbox">
+            <button onclick="click_exit()" class="exit_button">Exit</button>
+            <button onclick="click_divided()" class="divided_button">Divided</button>
+            <button onclick="click_multiplication()" class="multiplication_button">Multiplication</button>
+
+        </div>
+    </div>
+</div>
+
+<script src="phepcong.js">
+
+</script>
+
+</body>
+</html>
